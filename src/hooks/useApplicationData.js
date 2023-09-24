@@ -58,9 +58,10 @@ function reducer(state, action) {
 
 export default function useApplicationData() {
 	const [state, dispatch] = useReducer(reducer, initialState);
+	const baseURL = `${process.env.REACT_APP_BASE_URL}`;
 
 	useEffect(() => {
-		fetch(`/api/photos`)
+		fetch(`${baseURL}/api/photos`)
 			.then((res) => res.json())
 			.then((data) => {
 				dispatch({ type: "SET_PHOTO_DATA", photoData: data });
@@ -68,7 +69,7 @@ export default function useApplicationData() {
 	}, []);
 
 	useEffect(() => {
-		fetch(`/api/topics`)
+		fetch(`${baseURL}/api/topics`)
 			.then((res) => res.json())
 			.then((data) => {
 				dispatch({ type: "SET_TOPIC_DATA", topicData: data });
@@ -76,7 +77,7 @@ export default function useApplicationData() {
 	}, []);
 
 	const selectTopic = (topicId) => {
-		fetch(`/api/topics/photos/${topicId}`)
+		fetch(`${baseURL}/api/topics/photos/${topicId}`)
 			.then((res) => res.json())
 			.then((data) => {
 				dispatch({ type: "GET_PHOTOS_BY_TOPICS", selectedPhotoData: data });
