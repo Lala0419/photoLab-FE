@@ -31,6 +31,5 @@
 	},
 	"devDependencies": {
 		"sass": "^1.59.2"
-	},
-	"proxy": "https://photolab-be.onrender.com"
+	}
 }
